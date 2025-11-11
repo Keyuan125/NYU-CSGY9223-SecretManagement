@@ -72,7 +72,11 @@ def lambda_handler(event, context):
         except ClientError as e:
             if e.response["Error"]["Code"] == "AccessDeniedException":
                 response = create_secret_with_keys(None)
-        
+            else:
+                return {
+                    "statusCode": 500,
+                    "body": json.dumps({"Error": str(e)})
+                }
         return {
             "statusCode": 200,
             "body": json.dumps({
