@@ -72,12 +72,3 @@ def lambda_handler(event, context):
             "statusCode": 500,
             "body": json.dumps({"Error": str(e)})
         }
-
-if __name__ == "__main__":
-    import json
-
-    with open("test_event.json") as f:
-        event = json.load(f)
-
-    result = lambda_handler(event, None)
-    print(json.dumps(result, indent=2))
